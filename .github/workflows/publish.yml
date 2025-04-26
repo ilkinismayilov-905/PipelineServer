@@ -71,7 +71,6 @@ jobs:
 
       - name: Transfer Compose File
         run: |
-          mkdir -p ~/workspace/backend/ilkin/
           scp -i $HOME/.ssh/private_key -P $SERVER_PORT -o StrictHostKeyChecking=no docker-compose.$ENV.yml $SERVER_USER@$SERVER_HOST:~/workspace/backend/ilkin/
 
       - name: Debug Environment Variables
@@ -88,7 +87,7 @@ jobs:
             echo "${GITHUB_TOKEN}" | docker login ghcr.io -u ${GITHUB_REPO_OWNER} --password-stdin
             envsubst < docker-compose.$ENV.yml > docker-compose.substituted.yml
             mv docker-compose.substituted.yml docker-compose.$ENV.yml
-            docker compose -f docker-compose.$TAG.yml pull
-            docker compose -f docker-compose.$ENV.yml down
-            docker compose -f docker-compose.$ENV.yml up -d
+            docker-compose -f docker-compose.$TAG.yml pull
+            docker-compose -f docker-compose.$ENV.yml down
+            docker-compose -f docker-compose.$ENV.yml up -d
           EOF
