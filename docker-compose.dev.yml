@@ -3,9 +3,9 @@ version: '3.8'
 services:
   backend:
     image: ghcr.io/${GITHUB_REPO_OWNER}/qolum-backend:${TAG}
-    container_name: qolum-backend-dev
+    container_name: ilkin-backend-dev
     ports:
-      - "8088:8080"  # Expose port 8080 of backend to port 8081 of the host
+      - "8098:8080"  # Expose port 8080 of backend to port 8098 of the host
     environment:
       - SPRING_PROFILES_ACTIVE=dev  # Set profile to dev
     networks:
