@@ -70,6 +70,7 @@ jobs:
 
       - name: Transfer Compose File
         run: |
+          mkdir -p ~/workspace/backend/ilkin/
           scp -i $HOME/.ssh/private_key -P $SERVER_PORT -o StrictHostKeyChecking=no docker-compose.$ENV.yml $SERVER_USER@$SERVER_HOST:~/workspace/backend/ilkin/
 
       - name: Debug Environment Variables
