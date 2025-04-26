@@ -17,7 +17,7 @@ jobs:
       contents: read
       packages: write
     env:
-      IMAGE_NAME: qolum-backend
+      IMAGE_NAME: ilkin-backend
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_REPO_OWNER: ${{ github.repository_owner }}
       IMAGE_TAG: ${{ github.sha }}
@@ -81,7 +81,7 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh -i $HOME/.ssh/private_key -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST <<EOF
-            cd ~/workspace/backend           
+            cd ~/workspace/backend/ilkin/           
             export GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER}
             export TAG=${TAG}
             echo "${GITHUB_TOKEN}" | docker login ghcr.io -u ${GITHUB_REPO_OWNER} --password-stdin
